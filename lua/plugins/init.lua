@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
     end
   }
   use 'nvim-lualine/lualine.nvim'
-  
+  use 'Mofiqul/dracula.nvim'
   use {
   'nvim-tree/nvim-tree.lua',
   tag = 'nightly', -- Для последних фич (опционально)

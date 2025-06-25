@@ -37,10 +37,7 @@ require('nvim-tree').setup({
     number = false,
     relativenumber = false,
     signcolumn = 'yes',
-    width = {
-      min = 50,
-      max = 70
-    },
+    width = 31,
     side = "right"
   },
 
