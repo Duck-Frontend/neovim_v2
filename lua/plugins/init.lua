@@ -24,7 +24,18 @@ return require('packer').startup(function(use)
     end
   }
   use 'nvim-lualine/lualine.nvim'
-  use 'nvim-tree/nvim-web-devicons'  -- У вас была опечатка (devisons -> devicons)
+  
+  use {
+  'nvim-tree/nvim-tree.lua',
+  tag = 'nightly', -- Для последних фич (опционально)
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- Иконки
+    'MunifTanjim/nui.nvim' -- Для расширенных UI-элементов
+  },
+  config = function()
+    require('plugins.tree') -- Новый путь для конфига
+  end
+}
 
   -- Навигация
   use 'nvim-tree/nvim-tree.lua'
