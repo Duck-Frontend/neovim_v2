@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/august/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?.lua;/home/august/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?/init.lua;/home/august/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?.lua;/home/august/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/august/.cache/nvim/packer_hererocks/2.1.1741730670/lib/lua/5.1/?.so"
+local package_path_str = "/Users/duck/.cache/nvim/packer_hererocks/2.1.1748459687/share/lua/5.1/?.lua;/Users/duck/.cache/nvim/packer_hererocks/2.1.1748459687/share/lua/5.1/?/init.lua;/Users/duck/.cache/nvim/packer_hererocks/2.1.1748459687/lib/luarocks/rocks-5.1/?.lua;/Users/duck/.cache/nvim/packer_hererocks/2.1.1748459687/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/duck/.cache/nvim/packer_hererocks/2.1.1748459687/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,73 +76,89 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["mason-lspconfig.nvim"] = {
+    config = { "\27LJ\2\nÅ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21ensure_installed\1\0\1\21ensure_installed\0\1\3\0\0\fpyright\npylsp\nsetup\20mason-lspconfig\frequire\0" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/opt/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    after = { "mason-lspconfig.nvim" },
+    config = { "\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0" },
+    loaded = true,
+    only_config = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["rose-pine"] = {
     config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins.theme\frequire\0" },
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/rose-pine",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-commentary"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-python-indent-black"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/vim-python-indent-black",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-python-indent-black",
     url = "https://github.com/jeetsukumaran/vim-python-indent-black"
   },
   ["vim-python-pep8-indent"] = {
     loaded = true,
-    path = "/home/august/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
     url = "https://github.com/Vimjas/vim-python-pep8-indent"
   }
 }
@@ -152,6 +168,19 @@ time([[Defining packer_plugins]], false)
 time([[Config for rose-pine]], true)
 try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18plugins.theme\frequire\0", "config", "rose-pine")
 time([[Config for rose-pine]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+try_loadstring("\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0", "config", "mason.nvim")
+time([[Config for mason.nvim]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-lspconfig ]]
+vim.cmd [[ packadd mason-lspconfig.nvim ]]
+
+-- Config for: mason-lspconfig.nvim
+try_loadstring("\27LJ\2\nÅ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21ensure_installed\1\0\1\21ensure_installed\0\1\3\0\0\fpyright\npylsp\nsetup\20mason-lspconfig\frequire\0", "config", "mason-lspconfig.nvim")
+
+time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
