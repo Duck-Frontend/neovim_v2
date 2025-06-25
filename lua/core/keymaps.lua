@@ -1,13 +1,19 @@
+-- Установка пробела как лидера
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Локальная переменная для удобства
 local keymap = vim.keymap
 
--- Основные комбинации
-keymap.set('n', '<leader>pv', vim.cmd.Ex)  -- Открыть файловый менеджер
+-- Быстрое сохранение
+keymap.set('n', '<leader>s', ':w<CR>', { desc = 'Save file' })
 
--- Перемещение между окнами
-keymap.set('n', '<C-h>', '<C-w>h')
-keymap.set('n', '<C-j>', '<C-w>j')
-keymap.set('n', '<C-k>', '<C-w>k')
-keymap.set('n', '<C-l>', '<C-w>l')
+-- Поиск по файлу (используем Telescope)
+keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { desc = 'Find files' })
 
--- Python-специфичные комбинации
-keymap.set('n', '<leader>rp', ':w<CR>:!python3 %<CR>')  -- Запуск текущего файла
+-- LSP-действия
+keymap.set('n', '<leader>d', vim.lsp.buf.definition, { desc = 'Go to definition' })
+keymap.set('n', '<leader>r', vim.lsp.buf.rename, { desc = 'Rename symbol' })
+
+-- Запуск Python-файла
+keymap.set('n', '<leader>rp', ':w<CR>:!python3 %<CR>', { desc = 'Run Python file' })

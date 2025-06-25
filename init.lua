@@ -5,3 +5,4 @@ require('core.autocmd')
 
 -- Инициализация плагинов
 require('plugins.init')
+require('plugins.cmp')
