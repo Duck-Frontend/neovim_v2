@@ -7,7 +7,7 @@ end
 
 -- Настройка темы (опционально)
 dracula.setup({
-  transparent_bg = false,
+  transparent_bg = true,
   italic_comment = true,
 })
 
