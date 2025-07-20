@@ -25,6 +25,11 @@ return require('packer').startup(function(use)
   }
   use 'nvim-lualine/lualine.nvim'
   use 'Mofiqul/dracula.nvim'
+  use 'p00f/clangd_extensions.nvim'  -- Улучшения для clangd
+  use 'simrat39/rust-tools.nvim'  -- Полезно и для C++
+  use 'mfussenegger/nvim-dap'  -- Отладчик (у вас уже есть)
+  use 'rcarriga/nvim-dap-ui'  -- UI для отладки
+  use 'theHamsta/nvim-dap-virtual-text'  -- Виртуальный текст при отладке
   use {
   'nvim-tree/nvim-tree.lua',
   tag = 'nightly', -- Для последних фич (опционально)
