@@ -16,13 +16,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- У вас была опечатка в имени (ubthomason -> wbthomason)
 
   -- Внешний вид
-  use {
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      require('plugins.theme')
-    end
-  }
   use 'nvim-lualine/lualine.nvim'
   use 'Mofiqul/dracula.nvim'
   use 'p00f/clangd_extensions.nvim'  -- Улучшения для clangd
@@ -76,6 +69,8 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
 
+-- Тема
+use 'danilo-augusto/vim-afterglow'
   if packer_bootstrap then
     require('packer').sync()
   end
