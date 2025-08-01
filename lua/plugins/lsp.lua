@@ -7,27 +7,44 @@ mason_lspconfig.setup({
   ensure_installed = {
     "pylsp",        -- Python (альтернатива: "pyright")
     "clangd",       -- C/C++
-    "rust_analyzer" -- Для Rust (опционально)
   }
 })
 
--- Настройка pylsp (Python)
+-- Функция для автоматического определения venv
+local function get_python_path()
+  -- Проверяем наличие venv в корне проекта
+  local venv_path = vim.fn.getcwd() .. '/venv'
+  if vim.fn.isdirectory(venv_path) == 1 then
+    return venv_path .. '/bin/python'  -- Linux/MacOS
+    -- Для Windows: venv_path .. '\\Scripts\\python.exe'
+  end
+  -- Если venv нет, используем глобальный Python
+  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+end
+
+-- Настройка pylsp (Python) с поддержкой venv
 lspconfig.pylsp.setup({
   capabilities = capabilities,
   settings = {
     pylsp = {
       plugins = {
-        pycodestyle = { enabled = false },  -- Отключаем pycodestyle
-        pylint = { enabled = true },       -- Включаем pylint
+        pycodestyle = { enabled = false },  -- Отключаем pycodestyle (если мешает)
+        pylint = { enabled = true },        -- Включаем pylint
         pyflakes = { enabled = true },      -- Включаем pyflakes
         jedi_completion = { enabled = true },
-        rope_autoimport = { enabled = true }
-      }
-    }
+        rope_autoimport = { enabled = true },
+        jedi = {
+          environment = get_python_path(),  -- Указываем путь к Python из venv
+          extra_paths = { "./src" },       -- Доп. пути для импортов
+        },
+      },
+    },
   },
   on_attach = function(client, bufnr)
-    -- Общие LSP keymaps могут быть здесь
-  end
+    -- Ключевые маппинги для LSP
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true })
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>', { noremap = true })
+  end,
 })
 
 -- Настройка clangd (C/C++)

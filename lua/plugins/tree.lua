@@ -12,7 +12,7 @@ local function my_on_attach(bufnr)
     }
   end
 
-  vim.keymap.set('n', '<CR>',    api.node.open.edit,        opts('Open'))
+  vim.keymap.set('n', '<CR>',    api.node.open.edit,        opts('Open')) 
   vim.keymap.set('n', 'o',       api.node.open.edit,        opts('Open'))
   vim.keymap.set('n', '<C-v>',   api.node.open.vertical,    opts('Open: Vertical Split'))
   vim.keymap.set('n', '<C-x>',   api.node.open.horizontal,  opts('Open: Horizontal Split'))
@@ -23,6 +23,7 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', 'r',       api.fs.rename,             opts('Rename'))
   vim.keymap.set('n', 'y',       api.fs.copy.node,          opts('Copy'))
   vim.keymap.set('n', 'p',       api.fs.paste,              opts('Paste'))
+  vim.keymap.set('n', 'x',       api.fs.cut,                opts('Cut'))
 end
 
 require('nvim-tree').setup({
@@ -34,17 +35,25 @@ require('nvim-tree').setup({
   -- Визуальные настройки:
   view = {
     adaptive_size = true,    -- Автоподстройка ширины
-    number = false,
-    relativenumber = false,
+    number = true,
+    relativenumber = true,
     signcolumn = 'yes',
-    width = 59,
-    side = "right"
+    side = "right",
+    centralize_selection = true,
   },
 
   renderer = {
     indent_markers = {
-      enable = true          -- Показать отступы
-    },
+      enable = true,    -- Показать отступы
+      inline_arrows = true,
+      icons = {
+        corner = "└",    -- Символ для угла
+        edge = "│",      -- Символ для линии отступа
+        item = "├",      -- Символ для элемента
+        none = " ",       -- Пустой символ
+      },
+  },
+  indent_width = 4, 
     icons = {
       webdev_colors = true,
       git_placement = 'after',
@@ -59,7 +68,7 @@ require('nvim-tree').setup({
 
   -- Фильтры:
   filters = {
-    custom = { '^\\.git$' }  -- Скрыть .git
+    custom = { '^\\.git$', '^\\.venv$' }  -- Скрыть .git
   },
 
   -- Системные интеграции:
