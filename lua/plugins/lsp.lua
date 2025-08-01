@@ -13,7 +13,7 @@ mason_lspconfig.setup({
 -- Функция для автоматического определения venv
 local function get_python_path()
   -- Проверяем наличие venv в корне проекта
-  local venv_path = vim.fn.getcwd() .. '/venv'
+  local venv_path = vim.fn.getcwd() .. '/.venv'
   if vim.fn.isdirectory(venv_path) == 1 then
     return venv_path .. '/bin/python'  -- Linux/MacOS
     -- Для Windows: venv_path .. '\\Scripts\\python.exe'
