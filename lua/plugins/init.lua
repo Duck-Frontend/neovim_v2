@@ -25,7 +25,6 @@ return require('packer').startup(function(use)
   use 'theHamsta/nvim-dap-virtual-text'  -- Виртуальный текст при отладке
   use {
   'nvim-tree/nvim-tree.lua',
-  tag = 'nightly', -- Для последних фич (опционально)
   requires = {
     'nvim-tree/nvim-web-devicons', -- Иконки
     'MunifTanjim/nui.nvim' -- Для расширенных UI-элементов
@@ -36,7 +35,6 @@ return require('packer').startup(function(use)
 }
 
   -- Навигация
-  use 'nvim-tree/nvim-tree.lua'
   use 'nvim-telescope/telescope.nvim'
 
   -- LSP и автодополнение
