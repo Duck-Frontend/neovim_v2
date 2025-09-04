@@ -6,8 +6,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 mason_lspconfig.setup({
   ensure_installed = {
     "pylsp",        -- Python (альтернатива: "pyright")
-    "clangd",       -- C/C++
-  }
+    "clangd",       -- C/C++  
+    "pylint",
+    "pyflakes"
 })
 
 -- Функция для автоматического определения venv
