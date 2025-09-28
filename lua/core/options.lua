@@ -22,16 +22,6 @@ opt.scrolloff = 8             -- Минимальное число строк н
 opt.signcolumn = "yes"        -- Всегда показывать колонку знаков
 opt.updatetime = 50           -- Частота обновления (мс)
 opt.completeopt = 'menuone,noselect'  -- Настройки автодополнения
--- Включение и настройка цветной линии
-vim.opt.colorcolumn = "80"  -- Основная линия
-
--- Яркая подсветка линии (добавьте в colorscheme)
-vim.api.nvim_set_hl(0, 'ColorColumn', {
-  bg = '#3a3a3a',      -- Темно-серый фон
-  fg = '#ff0000',      -- Красная граница (опционально)
-  ctermbg = 236,       -- Для терминалов
-  underline = true,    -- Подчеркивание
-})
 
 -- Python-специфичные настройки
 g.python3_host_prog = vim.fn.exepath('python3')  -- Использовать Python3

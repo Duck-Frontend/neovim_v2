@@ -12,4 +12,4 @@ dracula.setup({
 })
 
 -- Включение темы
-vim.cmd.colorscheme('dracula-soft')
+vim.cmd.colorscheme('atlas')

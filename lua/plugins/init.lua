@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- У вас была опечатка в имени (ubthomason -> wbthomason)
 
   -- Внешний вид
+  use 'huyvohcmc/atlas.vim'
   use 'nvim-lualine/lualine.nvim'
   use 'Mofiqul/dracula.nvim'
   use 'p00f/clangd_extensions.nvim'  -- Улучшения для clangd
