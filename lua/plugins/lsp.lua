@@ -2,27 +2,25 @@ local lspconfig = require('lspconfig')
 local mason_lspconfig = require('mason-lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local schemastore_ok, schemastore = pcall(require, 'schemastore')
+if not schemastore_ok then
+  print("Schemastore not installed. Install it for better JSON support")
+end
+
 -- Установка LSP серверов через Mason
 mason_lspconfig.setup({
   ensure_installed = {
     -- Бэкенд
-    "pylsp",        -- Python (альтернатива: "pyright")
-    "clangd",       -- C/C++
-    "pylint",
-    "pyflakes",
+    "pylsp", "clangd", "pylint", "pyflakes",
     
     -- Фронтенд
-    "tsserver",           -- TypeScript/JavaScript
-    "html",               -- HTML
-    "cssls",              -- CSS
-    "emmet_ls",           -- Emmet
-    "jsonls",             -- JSON
-    "eslint",             -- ESLint
-    "vue_language_server", -- Vue.js
-    "tailwindcss"         -- Tailwind CSS (опционально)
+    "tsserver", "html", "cssls", "emmet_ls", "jsonls", "eslint",
+    "vue_language_server", "tailwindcss",
+    
+    -- Дополнительно для Django/Flask
+    "dockerls", "yamlls", "bashls"
   }
 })
-
 -- Функция для автоматического определения venv
 local function get_python_path()
   local venv_path = vim.fn.getcwd() .. '/.venv'

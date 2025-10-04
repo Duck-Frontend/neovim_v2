@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- У вас была опечатка в имени (ubthomason -> wbthomason)
 
   -- Внешний вид
+  use 'shaunsingh/nord.nvim'
   use 'huyvohcmc/atlas.vim'
   use 'nvim-lualine/lualine.nvim'
   use 'Mofiqul/dracula.nvim'
@@ -37,7 +38,19 @@ return require('packer').startup(function(use)
 
   -- Навигация
   use 'nvim-telescope/telescope.nvim'
-
+  use {
+  'barrett-ruth/live-server.nvim',
+  config = function()
+    require('live-server').setup({
+      port = 8080,  -- порт по умолчанию
+      browser = 'google chrome',  -- браузер
+      inject = true,  -- live reload
+      no_css_inject = false,
+      wait = 100,
+      log_level = 2,
+    })
+  end
+}
   -- LSP и автодополнение
   use 'neovim/nvim-lspconfig'
   -- Добавляем Mason и связанные плагины:
