@@ -8,6 +8,13 @@ local keymap = vim.keymap
 -- Быстрое сохранение
 keymap.set('n', '<leader>s', ':w<CR>', { desc = 'Save file' })
 
+
+
+vim.keymap.set('n', '<leader>ls', '<cmd>LiveServerStart<cr>')
+vim.keymap.set('n', '<leader>lq', '<cmd>LiveServerStop<cr>')
+
+
+
 -- Поиск по файлу (используем Telescope)
 keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { desc = 'Find files' })
 

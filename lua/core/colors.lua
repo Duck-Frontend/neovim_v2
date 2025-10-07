@@ -12,4 +12,4 @@ dracula.setup({
 })
 
 -- Включение темы
-vim.cmd.colorscheme('atlas')
+vim.cmd.colorscheme('nord')

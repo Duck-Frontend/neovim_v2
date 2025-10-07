@@ -7,3 +7,4 @@ require('core.colors')
 -- Инициализация плагинов
 require('plugins.init')
 require('plugins.cmp')
+require('plugins.lualine')
