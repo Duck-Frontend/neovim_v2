@@ -15,6 +15,10 @@ return require('packer').startup(function(use)
   -- Менеджер плагинов
   use 'wbthomason/packer.nvim'  -- У вас была опечатка в имени (ubthomason -> wbthomason)
 
+  -- Css
+  use 'brenoprata10/nvim-highlight-colors'
+  use 'norcalli/nvim-colorizer.lua'
+
   -- Внешний вид
   use 'shaunsingh/nord.nvim'
   use 'huyvohcmc/atlas.vim'
