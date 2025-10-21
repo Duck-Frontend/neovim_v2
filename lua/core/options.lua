@@ -1,6 +1,7 @@
 local opt = vim.opt
 local g = vim.g
 
+
 -- Основные настройки
 opt.number = true             -- Номера строк
 opt.relativenumber = true     -- Относительные номера строк
@@ -22,6 +23,7 @@ opt.scrolloff = 8             -- Минимальное число строк н
 opt.signcolumn = "yes"        -- Всегда показывать колонку знаков
 opt.updatetime = 50           -- Частота обновления (мс)
 opt.completeopt = 'menuone,noselect'  -- Настройки автодополнения
+
 
 -- Python-специфичные настройки
 g.python3_host_prog = vim.fn.exepath('python3')  -- Использовать Python3
