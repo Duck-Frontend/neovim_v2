@@ -1,27 +1,17 @@
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
     -- Бэкенд
-    "python", "lua", "vim", "vimdoc", "c", "cpp",
+    "python", "c", "lua", "vim", "bash",
+    
     -- Фронтенд  
-    "html", "css", "javascript", "typescript", "tsx", "jsx",
-    "json", "yaml", "toml", "vue", "scss", "bash", "dockerfile"
+    "html", "css", "javascript", "json", "yaml",
+  },
+
+  highlight = { 
+    enable = true,
+    -- Дополнительные типы файлов для подсветки
+    additional_vim_regex_highlighting = {"jinja", "django"}
   },
   
-  highlight = { enable = true },
   indent = { enable = true },
-  
-  -- Дополнительные плагины Treesitter
-  additional_vim_regex_highlighting = false,
-  
-  -- Автозакрывание тегов для HTML/JSX
-  autotag = {
-    enable = true,
-    filetypes = { "html", "xml", "javascript", "typescript", "javascriptreact", "typescriptreact", "vue" }
-  },
-  
-  -- Контекстное комментирование
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  }
 })

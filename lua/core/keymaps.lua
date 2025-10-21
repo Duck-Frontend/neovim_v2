@@ -16,11 +16,6 @@ vim.keymap.set('n', '<leader>ls', '<cmd>LiveServerStart<cr>')
 vim.keymap.set('n', '<leader>lq', '<cmd>LiveServerStop<cr>')
 
 
--- LSP-действия
-keymap.set('n', '<leader>d', vim.lsp.buf.definition, { desc = 'Go to definition' })
-keymap.set('n', '<leader>r', vim.lsp.buf.rename, { desc = 'Rename symbol' })
-
-
 -- Файловый менеджер
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
 vim.keymap.set('n', '<leader>n', ':NvimTreeFindFile<CR>', { desc = 'Reveal current file in tree' })
@@ -43,7 +38,6 @@ local function setup_window_navigation()
   vim.keymap.set('n', '<leader>J', '<C-w>J', opts) -- Переместить окно вниз
   vim.keymap.set('n', '<leader>K', '<C-w>K', opts) -- Переместить окно вверх
   vim.keymap.set('n', '<leader>L', '<C-w>L', opts) -- Переместить окно вправо
-
 
   -- Быстрое закрытие окна
   vim.keymap.set('n', '<leader>q', '<C-w>c', opts)

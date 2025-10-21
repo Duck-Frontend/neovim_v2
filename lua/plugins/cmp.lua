@@ -1,7 +1,6 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -9,9 +8,6 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-
-
-    -- Tab/Shift-Tab
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -22,16 +18,26 @@ cmp.setup({
       end
     end, { 'i', 's' }),
 
-
-    -- Подтверждение
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    
+    -- 🔥 НОВОЕ: Автозакрытие при переходе по определениям
+    ['<C-g>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.abort()  -- Закрыть меню дополнения
+        vim.defer_fn(function()
+          vim.lsp.buf.definition()  -- Перейти к определению
+        end, 50)
+      else
+        vim.lsp.buf.definition()  -- Обычный переход
+      end
+    end, { 'i', 'n' }),
   }),
 
-sources = cmp.config.sources({
-  { name = 'nvim_lsp' },
-  { name = 'luasnip' }, 
-  { name = 'buffer' },    
-  { name = 'path' },       
-  { name = 'emoji' },         
-}),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'emoji' },
+  }),
 })

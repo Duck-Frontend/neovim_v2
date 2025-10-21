@@ -79,26 +79,10 @@ _G.packer_plugins = {
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["clangd_extensions.nvim"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/clangd_extensions.nvim",
-    url = "https://github.com/p00f/clangd_extensions.nvim"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
-  },
-  ["dracula.nvim"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/dracula.nvim",
-    url = "https://github.com/Mofiqul/dracula.nvim"
-  },
-  ["live-server.nvim"] = {
-    config = { "\27LJ\2\nà\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\6\14log_level\3\2\18no_css_inject\1\vinject\2\tport\3ê?\fbrowser\18google chrome\twait\3d\nsetup\16live-server\frequire\0" },
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/live-server.nvim",
-    url = "https://github.com/barrett-ruth/live-server.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -106,18 +90,12 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["mason-lspconfig.nvim"] = {
-    config = { "\27LJ\2\nÅ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21ensure_installed\1\0\1\21ensure_installed\0\1\3\0\0\fpyright\npylsp\nsetup\20mason-lspconfig\frequire\0" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/opt/mason-lspconfig.nvim",
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
   ["mason.nvim"] = {
-    after = { "mason-lspconfig.nvim" },
-    config = { "\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0" },
     loaded = true,
-    only_config = true,
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
@@ -126,10 +104,10 @@ _G.packer_plugins = {
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/gbprod/nord.nvim"
   },
-  ["nui.nvim"] = {
+  ["null-ls.nvim"] = {
     loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nui.nvim",
-    url = "https://github.com/MunifTanjim/nui.nvim"
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -141,33 +119,12 @@ _G.packer_plugins = {
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
-  ["nvim-dap"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-dap",
-    url = "https://github.com/mfussenegger/nvim-dap"
-  },
-  ["nvim-dap-ui"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
-    url = "https://github.com/rcarriga/nvim-dap-ui"
-  },
-  ["nvim-dap-virtual-text"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
-    url = "https://github.com/theHamsta/nvim-dap-virtual-text"
-  },
-  ["nvim-highlight-colors"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-highlight-colors",
-    url = "https://github.com/brenoprata10/nvim-highlight-colors"
-  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
-    config = { "\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17plugins.tree\frequire\0" },
     loaded = true,
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/nvim-tree/nvim-tree.lua"
@@ -182,20 +139,15 @@ _G.packer_plugins = {
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["rust-tools.nvim"] = {
+  ["prettier.nvim"] = {
     loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
-    url = "https://github.com/simrat39/rust-tools.nvim"
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/prettier.nvim",
+    url = "https://github.com/MunifTanjim/prettier.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["vim-afterglow"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-afterglow",
-    url = "https://github.com/danilo-augusto/vim-afterglow"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -207,40 +159,14 @@ _G.packer_plugins = {
     path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
-  ["vim-python-indent-black"] = {
+  ["vim-jinja"] = {
     loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-python-indent-black",
-    url = "https://github.com/jeetsukumaran/vim-python-indent-black"
-  },
-  ["vim-python-pep8-indent"] = {
-    loaded = true,
-    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-python-pep8-indent",
-    url = "https://github.com/Vimjas/vim-python-pep8-indent"
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-jinja",
+    url = "https://github.com/lepture/vim-jinja"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17plugins.tree\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-try_loadstring("\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0", "config", "mason.nvim")
-time([[Config for mason.nvim]], false)
--- Config for: live-server.nvim
-time([[Config for live-server.nvim]], true)
-try_loadstring("\27LJ\2\nà\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\6\14log_level\3\2\18no_css_inject\1\vinject\2\tport\3ê?\fbrowser\18google chrome\twait\3d\nsetup\16live-server\frequire\0", "config", "live-server.nvim")
-time([[Config for live-server.nvim]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-lspconfig ]]
-vim.cmd [[ packadd mason-lspconfig.nvim ]]
-
--- Config for: mason-lspconfig.nvim
-try_loadstring("\27LJ\2\nÅ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21ensure_installed\1\0\1\21ensure_installed\0\1\3\0\0\fpyright\npylsp\nsetup\20mason-lspconfig\frequire\0", "config", "mason-lspconfig.nvim")
-
-time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

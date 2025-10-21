@@ -7,15 +7,6 @@ vim.cmd([[
     autocmd BufWritePost init.lua source <afile> | PackerSync
   augroup end
 ]])
--- Автокоманды для фронтенд разработки
---vim.api.nvim_create_autocmd('FileType', {
- -- pattern = { 'html', 'javascript', 'typescript', 'css', 'vue' },
- -- callback = function()
-    --vim.bo.tabstop = 4
-   -- vim.bo.shiftwidth = 4
-    --vim.bo.softtabstop = 4
-  --end
---})
 
 -- Автоформатирование при сохранении (опционально)
 vim.api.nvim_create_autocmd('BufWritePre', {
@@ -27,3 +18,4 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     end
   end
 })
+

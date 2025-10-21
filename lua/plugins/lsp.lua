@@ -1,55 +1,46 @@
-local lspconfig = require('lspconfig')
-local mason_lspconfig = require('mason-lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-
-mason_lspconfig.setup({
+-- Настройка Mason
+require('mason').setup()
+require('mason-lspconfig').setup({
   ensure_installed = {
-    "pyright",        -- Python (лучше чем pylsp - быстрее и точнее)
-    "clangd",         -- C/C++
-    "html",           -- HTML
-    "cssls",          -- CSS
-    "tsserver",       -- JavaScript/TypeScript
-    "jsonls",         -- JSON
-    "yamlls",         -- YAML
-    "bashls",         -- Bash scripts
+    "pyright", "clangd", "html", "cssls", 
+    "jsonls", "yamlls", "bashls"
   }
 })
 
--- Python (Pyright - лучший для автодополнения)
+-- Настройка LSP серверов
+local lspconfig = require('lspconfig')
+
+-- Python
 lspconfig.pyright.setup({
   capabilities = capabilities,
 })
 
--- C/C++
-lspconfig.clangd.setup({
-  capabilities = capabilities,
-})
-
--- Frontend
+-- Остальные серверы...
+lspconfig.clangd.setup({ capabilities = capabilities })
 lspconfig.html.setup({ capabilities = capabilities })
 lspconfig.cssls.setup({ capabilities = capabilities })
-lspconfig.tsserver.setup({ capabilities = capabilities })
-
--- Конфиги
 lspconfig.jsonls.setup({ capabilities = capabilities })
 lspconfig.yamlls.setup({ capabilities = capabilities })
-
--- Bash
 lspconfig.bashls.setup({ capabilities = capabilities })
 
+-- Общие горячие клавиши для ВСЕХ LSP
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
     local opts = { buffer = bufnr }
 
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gd', function()
+      vim.lsp.buf.definition({ reuse_win = true })  -- Использовать существующие окна
+    end, opts)
+
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     
-    -- Форматирование через LSP или Prettier
+    -- Форматирование
     vim.keymap.set('n', '<leader>f', function()
       vim.lsp.buf.format({ async = true })
     end, opts)
