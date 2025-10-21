@@ -13,17 +13,16 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   -- Менеджер плагинов
-  use 'wbthomason/packer.nvim'  -- У вас была опечатка в имени (ubthomason -> wbthomason)
-
+  use 'wbthomason/packer.nvim'
+  use 'Mofiqul/dracula.nvim'
   -- Css
   use 'brenoprata10/nvim-highlight-colors'
   use 'norcalli/nvim-colorizer.lua'
 
   -- Внешний вид
-  use 'shaunsingh/nord.nvim'
-  use 'huyvohcmc/atlas.vim'
+  use "gbprod/nord.nvim"
+  -- use 'shaunsingh/nord.nvim'
   use 'nvim-lualine/lualine.nvim'
-  use 'Mofiqul/dracula.nvim'
   use 'p00f/clangd_extensions.nvim'  -- Улучшения для clangd
   use 'simrat39/rust-tools.nvim'  -- Полезно и для C++
   use 'mfussenegger/nvim-dap'  -- Отладчик (у вас уже есть)

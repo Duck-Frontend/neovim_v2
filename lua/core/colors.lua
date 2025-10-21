@@ -11,5 +11,8 @@ dracula.setup({
   italic_comment = true,
 })
 
+require("nord").setup({
+    transparent = true,
+})
 -- Включение темы
-vim.cmd.colorscheme('nord')
+vim.cmd.colorscheme('dracula')
