@@ -84,6 +84,21 @@ _G.packer_plugins = {
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/emmet-vim",
+    url = "https://github.com/mattn/emmet-vim"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -109,6 +124,11 @@ _G.packer_plugins = {
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
+  ["nvim-autopairs"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -129,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -144,6 +169,11 @@ _G.packer_plugins = {
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["vim-closetag"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/vim-closetag",
+    url = "https://github.com/alvan/vim-closetag"
+  },
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/vim-commentary",
@@ -158,6 +188,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/duck/.local/share/nvim/site/pack/packer/start/vim-jinja",
     url = "https://github.com/lepture/vim-jinja"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/Users/duck/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 

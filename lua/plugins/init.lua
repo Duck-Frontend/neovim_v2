@@ -15,16 +15,16 @@ return require('packer').startup(function(use)
 
     -- Менеджер плагинов
   use 'wbthomason/packer.nvim'
-  
+
   -- Внешний вид
   use "gbprod/nord.nvim"
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
-  
+
   -- Навигация
   use 'nvim-telescope/telescope.nvim'
-  
+
   -- LSP и автодополнение
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
@@ -33,11 +33,26 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
   use 'lepture/vim-jinja'
-  
+
   -- Инструменты
   use 'norcalli/nvim-colorizer.lua'
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
+<<<<<<< HEAD
   use 'jose-elias-alvarez/null-ls.nvim'  
+=======
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
+>>>>>>> 5e83d7c (Попытка пересобрать сборку nvim для верски)
 
+  use 'lewis6991/gitsigns.nvim'
+  use 'windwp/nvim-autopairs'
+
+  use 'stevearc/dressing.nvim'
+  use 'folke/which-key.nvim'
+
+
+  use 'windwp/nvim-ts-autotag'
+  use 'alvan/vim-closetag'
+  use 'mattn/emmet-vim'
 end)

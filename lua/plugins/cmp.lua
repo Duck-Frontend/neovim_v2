@@ -19,8 +19,6 @@ cmp.setup({
     end, { 'i', 's' }),
 
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    
-    -- 🔥 НОВОЕ: Автозакрытие при переходе по определениям
     ['<C-g>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.abort()  -- Закрыть меню дополнения
