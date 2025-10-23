@@ -38,12 +38,8 @@ return require('packer').startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
-<<<<<<< HEAD
   use 'jose-elias-alvarez/null-ls.nvim'  
-=======
-  use 'jose-elias-alvarez/null-ls.nvim'
   use 'MunifTanjim/prettier.nvim'
->>>>>>> 5e83d7c (Попытка пересобрать сборку nvim для верски)
 
   use 'lewis6991/gitsigns.nvim'
   use 'windwp/nvim-autopairs'
