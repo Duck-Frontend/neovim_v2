@@ -39,3 +39,8 @@ cmp.setup({
     { name = 'emoji' },
   }),
 })
+
+formatting = {
+    format = require('tailwindcss-colorizer-cmp').formatter
+  }
+})

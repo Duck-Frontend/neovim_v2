@@ -22,7 +22,9 @@ require('mason-lspconfig').setup({
         -- Бэкенд
         "pyright", "clangd", "lua_ls", "bashls",
         -- 🔥 Фронтенд
-        "html", "cssls", "tsserver", "emmet_ls", "jsonls", "yamlls"
+        "html", "cssls", "tsserver", "emmet_ls", "jsonls", "yamlls",
+        -- Tailwind Css 
+        "tailwindcss"
     },
     automatic_installation = true,
 })
@@ -98,3 +100,118 @@ for server, config in pairs(servers) do
         on_attach = on_attach,
     }, config))
 end
+
+lspconfig.tailwindcss.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = {
+        "html", "css", "scss", "javascript", "javascriptreact", 
+        "typescript", "typescriptreact", "vue", "svelte",
+        "django", "htmldjango", "jinja", "jinja.html"  -- Для Django templates
+    },
+    settings = {
+        tailwindCSS = {
+            includeLanguages = {
+                html = "html",
+                javascript = "javascript", 
+                javascriptreact = "javascriptreact",
+                typescript = "typescript",
+                typescriptreact = "typescriptreact",
+                django = "html",
+                htmldjango = "html",
+                jinja = "html"
+            },
+            experimental = {
+                classRegex = {
+                    {'class=["\']([^"\']*)["\']', '"([^"]*)"'},
+                    {'className=["\']([^"\']*)["\']', '"([^"]*)"'}
+                }
+            }
+        }
+    }
+})
+3. Обнови lua/plugins/null-ls.lua
+lua
+null_ls.setup({
+  sources = {
+    -- Python форматирование
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
+
+    -- Frontend форматирование с поддержкой Tailwind
+    null_ls.builtins.formatting.prettier.with({
+      filetypes = {
+        "javascript", "javascriptreact", "typescript", "typescriptreact",
+        "html", "css", "scss", "json", "yaml", "markdown",
+        "django", "htmldjango"  -- Добавляем Django templates
+      },
+      extra_args = { "--plugin", "prettier-plugin-tailwindcss" }
+    }),
+  },
+})
+4. Обнови lua/plugins/cmp.lua
+lua
+cmp.setup({
+  -- ... твоя существующая конфигурация
+
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'emoji' },
+  }),
+
+  -- Добавь в конец файла:
+  formatting = {
+    format = require('tailwindcss-colorizer-cmp').formatter
+  }
+})
+5. Замени lua/plugins/color_css.lua
+lua
+require('colorizer').setup({
+  'css',
+  'scss', 
+  'html',
+  'javascript',
+  'javascriptreact',
+  'typescript',
+  'typescriptreact',
+  'django',
+  'htmldjango',
+  'jinja',
+}, {
+  mode = 'background',  -- Лучше для Tailwind
+  css = true,
+  css_fn = true,
+  tailwind = true,  -- Включить поддержку Tailwind
+  sass = { enable = true },
+})
+6. Обнови lua/plugins/treesitter.lua
+lua
+require('nvim-treesitter.configs').setup({
+  ensure_installed = {
+    -- Бэкенд
+    "python", "c", "lua", "vim", "bash",
+    -- 🔥 Фронтенд  
+    "html", "css", "scss", "javascript", "typescript",
+    "tsx", "jsx", "json", "yaml", "markdown", "vue"
+  },
+
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = {"jinja", "django", "htmldjango"}  -- Добавил htmldjango
+  },
+
+  indent = { enable = true },
+  autotag = { 
+    enable = true,
+    filetypes = {
+      "html", "javascript", "javascriptreact", "typescript", "typescriptreact",
+      "django", "htmldjango", "jinja"  -- Добавил Django templates
+    }
+  },
+})
+
+
+

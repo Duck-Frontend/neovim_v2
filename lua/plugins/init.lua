@@ -33,9 +33,11 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
   use 'lepture/vim-jinja'
+  use 'brenoprata10/nvim-highlight-colors'
+  use 'roobert/tailwindcss-colorizer-cmp.nvim'
 
   -- Инструменты
-  use 'norcalli/nvim-colorizer.lua'
+  use 'NvChad/nvim-colorizer.lua'
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
   use 'jose-elias-alvarez/null-ls.nvim'  
