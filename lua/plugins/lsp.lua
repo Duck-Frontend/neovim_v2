@@ -1,3 +1,5 @@
+vim.g.lspconfig_silent = true
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- Улучшенные возможности
@@ -22,14 +24,14 @@ require('mason-lspconfig').setup({
         -- Бэкенд
         "pyright", "clangd", "lua_ls", "bashls",
         -- 🔥 Фронтенд
-        "html", "cssls", "tsserver", "emmet_ls", "jsonls", "yamlls",
-        -- Tailwind Css 
+        "html", "cssls", "ts_ls", "emmet_ls", "jsonls", "yamlls",
+        -- Tailwind Css
         "tailwindcss"
     },
     automatic_installation = true,
 })
 
--- Настройка LSP серверов
+-- Используем стандартный require для lspconfig
 local lspconfig = require('lspconfig')
 
 -- Общие настройки для всех LSP
@@ -40,7 +42,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gd', function()
         vim.lsp.buf.definition({ reuse_win = true })
     end, opts)
-    
+
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
@@ -60,24 +62,36 @@ end
 local servers = {
     pyright = {},
     clangd = {},
-    html = { 
+    html = {
         filetypes = {'html', 'jinja', 'javascriptreact', 'typescriptreact'},
-        capabilities = capabilities,
     },
     cssls = {
         filetypes = {'css', 'scss', 'sass', 'less'},
-        capabilities = capabilities,
     },
-    tsserver = {
+    ts_ls = {
         filetypes = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact'},
-        capabilities = capabilities,
+        settings = {
+            typescript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = 'all',
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                }
+            },
+            javascript = {
+                inlayHints = {
+                    includeInlayParameterNameHints = 'all',
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                }
+            }
+        }
     },
     emmet_ls = {
-        filetypes = { 
-            'html', 'css', 'scss', 'sass', 'less', 
+        filetypes = {
+            'html', 'css', 'scss', 'sass', 'less',
             'javascriptreact', 'typescriptreact', 'vue'
         },
-        capabilities = capabilities,
     },
     jsonls = {},
     yamlls = {},
@@ -87,46 +101,49 @@ local servers = {
             Lua = {
                 runtime = { version = 'LuaJIT' },
                 diagnostics = { globals = {'vim'} },
-                workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+                workspace = { 
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false
+                },
                 telemetry = { enable = false },
             }
         }
     },
-}
-
-for server, config in pairs(servers) do
-    lspconfig[server].setup(vim.tbl_deep_extend('force', {
-        capabilities = capabilities,
-        on_attach = on_attach,
-    }, config))
-end
-
-lspconfig.tailwindcss.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = {
-        "html", "css", "scss", "javascript", "javascriptreact", 
-        "typescript", "typescriptreact", "vue", "svelte",
-        "django", "htmldjango", "jinja", "jinja.html"  -- Для Django templates
-    },
-    settings = {
-        tailwindCSS = {
-            includeLanguages = {
-                html = "html",
-                javascript = "javascript", 
-                javascriptreact = "javascriptreact",
-                typescript = "typescript",
-                typescriptreact = "typescriptreact",
-                django = "html",
-                htmldjango = "html",
-                jinja = "html"
-            },
-            experimental = {
-                classRegex = {
-                    {'class=["\']([^"\']*)["\']', '"([^"]*)"'},
-                    {'className=["\']([^"\']*)["\']', '"([^"]*)"'}
+    tailwindcss = {
+        filetypes = {
+            "html", "css", "scss", "javascript", "javascriptreact",
+            "typescript", "typescriptreact", "vue", "svelte",
+            "django", "htmldjango", "jinja", "jinja.html"
+        },
+        settings = {
+            tailwindCSS = {
+                includeLanguages = {
+                    html = "html",
+                    javascript = "javascript",
+                    javascriptreact = "javascriptreact",
+                    typescript = "typescript",
+                    typescriptreact = "typescriptreact",
+                    django = "html",
+                    htmldjango = "html",
+                    jinja = "html"
+                },
+                experimental = {
+                    classRegex = {
+                        {'class=["\']([^"\']*)["\']', '"([^"]*)"'},
+                        {'className=["\']([^"\']*)["\']', '"([^"]*)"'}
+                    }
                 }
             }
         }
     }
-})
+}
+
+-- ПРОСТОЙ И РАБОЧИЙ СПОСОБ: Настройка каждого сервера вручную
+for server, config in pairs(servers) do
+    lspconfig[server].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = config.settings,
+        filetypes = config.filetypes,
+    })
+end

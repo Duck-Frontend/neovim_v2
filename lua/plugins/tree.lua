@@ -82,9 +82,6 @@ require('nvim-tree').setup({
     signcolumn = 'yes',
     side = "right",
     centralize_selection = true,
-    mappings = {
-      custom_only = true,    -- Используем только кастомные маппинги
-    }
   },
 
   renderer = {
