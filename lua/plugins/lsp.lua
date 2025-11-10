@@ -136,18 +136,4 @@ local servers = {
             }
         }
     }
-<<<<<<< HEAD
 }
-
--- ПРОСТОЙ И РАБОЧИЙ СПОСОБ: Настройка каждого сервера вручную
-for server, config in pairs(servers) do
-    lspconfig[server].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = config.settings,
-        filetypes = config.filetypes,
-    })
-end
-=======
-})
->>>>>>> refs/remotes/origin/main
