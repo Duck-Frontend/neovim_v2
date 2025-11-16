@@ -17,20 +17,4 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-require("lazy").setup({
-  spec = {
-    { import = "plugins" },
-    {
-    "gbprod/nord.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("nord").setup({})
-      vim.cmd.colorscheme("nord")
-    end,
-  },
-  },
-  install = { colorscheme = { "nord" } },
-  checker = { enabled = true },
-})
-
+require("lazy").setup("plugins")
