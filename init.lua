@@ -8,6 +8,7 @@ require('config.lazy')
 
 
 -- Плагины
-require('plugins.lsp')
+require('plugins.mason')
 require('plugins.colorscheme')
 require('plugins.neo-tree')
+require('plugins.lualine')

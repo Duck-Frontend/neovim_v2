@@ -2,8 +2,6 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-
--- Локальная переменная для удобства
 local shortcut = vim.keymap.set
 
 -- Быстрое сохранение файла
@@ -14,7 +12,6 @@ shortcut('n', '<leader>q', ':wq<cr>', {desc='Exit with save'})
 
 -- Открытие/Закрытие файлового дерева
 shortcut('n', '<leader>e', '<cmd>Neotree toggle <cr>', {desc='Neotree toggle'})
-
 
 -- Навигация между окнами
 local function setup_window_navigation()

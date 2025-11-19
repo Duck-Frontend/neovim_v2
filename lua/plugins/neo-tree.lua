@@ -15,6 +15,9 @@ return {
         window = {
             width = auto,
             position = 'right',
+            mappings = {
+                ["<C-v>"] = "open_vsplit",
+            },
         }
     }
   },
