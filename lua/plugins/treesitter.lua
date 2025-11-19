@@ -1,23 +1,44 @@
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
-    -- Бэкенд
-    "python", "c", "lua", "vim", "bash",
-    -- 🔥 Фронтенд  
-    "html", "css", "scss", "javascript", "typescript",
-    "tsx", "jsx", "json", "yaml", "markdown", "vue"
+    "python",
+    "lua",
+    "vim",
+    "bash",
+    "html",
+    "css",
+    "javascript",
+    "typescript",
+    "json",
+    "yaml",
+    "markdown",
   },
 
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = {"jinja", "django", "htmldjango"}  -- Добавил htmldjango
+    additional_vim_regex_highlighting = {"htmldjango"}
   },
 
-  indent = { enable = true },
-  autotag = { 
+  indent = { 
     enable = true,
-    filetypes = {
-      "html", "javascript", "javascriptreact", "typescript", "typescriptreact",
-      "django", "htmldjango", "jinja"  -- Добавил Django templates
-    }
+    disable = {"python"}  -- Отключаем treesitter indent для Python (лучше работает без него)
   },
+
+  -- Контекстное комментирование
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
+})
+
+-- Дополнительные настройки для Python
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+    -- Включение лучшего форматирования для Python
+    vim.bo.tabstop = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 4
+    vim.bo.expandtab = true
+    vim.bo.smartindent = true
+  end
 })

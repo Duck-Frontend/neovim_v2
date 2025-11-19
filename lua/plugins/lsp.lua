@@ -1,14 +1,5 @@
-vim.g.lspconfig_silent = true
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Улучшенные возможности
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = { 'documentation', 'detail', 'additionalTextEdits' }
-}
-
--- Настройка Mason
 require('mason').setup({
     ui = {
         icons = {
@@ -16,124 +7,92 @@ require('mason').setup({
             package_pending = "➜",
             package_uninstalled = "✗"
         }
-    }
+    },
 })
 
 require('mason-lspconfig').setup({
     ensure_installed = {
-        -- Бэкенд
-        "pyright", "clangd", "lua_ls", "bashls",
-        -- 🔥 Фронтенд
-        "html", "cssls", "ts_ls", "emmet_ls", "jsonls", "yamlls",
-        -- Tailwind Css
-        "tailwindcss"
+        "pyright",
+        "html",
+        "cssls",
     },
     automatic_installation = true,
 })
 
--- Используем стандартный require для lspconfig
-local lspconfig = require('lspconfig')
 
--- Общие настройки для всех LSP
+local lspconfig = vim.lsp.config
+lspconfig.pyright.setup({})
+
+
+
+--local lspconfig = require('lspconfig')
+
 local on_attach = function(client, bufnr)
     local opts = { buffer = bufnr }
 
-    -- Хоткеи
-    vim.keymap.set('n', 'gd', function()
-        vim.lsp.buf.definition({ reuse_win = true })
-    end, opts)
-
+    -- Навигация
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    
+    -- Форматирование
     vim.keymap.set('n', '<leader>f', function()
-        vim.lsp.buf.format({ async = true })
+        vim.lsp.buf.format({
+            filter = function(client)
+                return client.name == "null-ls" or client.name == "pyright"
+            end,
+            async = true
+        })
     end, opts)
 
-    -- Emmet хоткеи только для HTML/CSS
-    local ft = vim.bo.filetype
-    if ft == 'html' or ft == 'css' or ft == 'javascriptreact' or ft == 'typescriptreact' then
-        vim.keymap.set('i', '<C-e>', '<C-y>,', { buffer = bufnr, desc = 'Emmet expand' })
+    -- Отключаем форматирование от LSP серверов (будет делать null-ls)
+    if client.supports_method("textDocument/formatting") then
+        client.server_capabilities.documentFormattingProvider = false 
     end
 end
 
--- Конфигурации конкретных серверов
+-- Конфигурации LSP серверов
 local servers = {
-    pyright = {},
-    clangd = {},
-    html = {
-        filetypes = {'html', 'jinja', 'javascriptreact', 'typescriptreact'},
-    },
-    cssls = {
-        filetypes = {'css', 'scss', 'sass', 'less'},
-    },
-    ts_ls = {
-        filetypes = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact'},
+    pyright = {
         settings = {
-            typescript = {
-                inlayHints = {
-                    includeInlayParameterNameHints = 'all',
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayVariableTypeHints = true,
-                }
+            pyright = {
+                autoImportCompletion = true,
             },
-            javascript = {
-                inlayHints = {
-                    includeInlayParameterNameHints = 'all',
-                    includeInlayFunctionParameterTypeHints = true,
-                    includeInlayVariableTypeHints = true,
+            python = {
+                analysis = {
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                    useLibraryCodeForTypes = true,
+                    typeCheckingMode = "off",
+                    extraPaths = {"./venv/lib/python3.*/site-packages"},
+                },
+                formatting = {
+                    provider = "black",
                 }
             }
         }
     },
-    emmet_ls = {
-        filetypes = {
-            'html', 'css', 'scss', 'sass', 'less',
-            'javascriptreact', 'typescriptreact', 'vue'
-        },
+    html = {
+        filetypes = {'html', 'htmldjango', 'jinja'},
     },
-    jsonls = {},
-    yamlls = {},
-    bashls = {},
-    lua_ls = {
-        settings = {
-            Lua = {
-                runtime = { version = 'LuaJIT' },
-                diagnostics = { globals = {'vim'} },
-                workspace = { 
-                    library = vim.api.nvim_get_runtime_file("", true),
-                    checkThirdParty = false
-                },
-                telemetry = { enable = false },
-            }
-        }
-    },
-    tailwindcss = {
-        filetypes = {
-            "html", "css", "scss", "javascript", "javascriptreact",
-            "typescript", "typescriptreact", "vue", "svelte",
-            "django", "htmldjango", "jinja", "jinja.html"
-        },
-        settings = {
-            tailwindCSS = {
-                includeLanguages = {
-                    html = "html",
-                    javascript = "javascript",
-                    javascriptreact = "javascriptreact",
-                    typescript = "typescript",
-                    typescriptreact = "typescriptreact",
-                    django = "html",
-                    htmldjango = "html",
-                    jinja = "html"
-                },
-                experimental = {
-                    classRegex = {
-                        {'class=["\']([^"\']*)["\']', '"([^"]*)"'},
-                        {'className=["\']([^"\']*)["\']', '"([^"]*)"'}
-                    }
-                }
-            }
-        }
-    }
+    cssls = {},
 }
+
+for server, config in pairs(servers) do
+    config.capabilities = capabilities
+    config.on_attach = on_attach
+    -- lspconfig[server].setup(config)
+end
+
+
+-- Автокоманды для Django
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = {'python', 'htmldjango'},
+    callback = function()
+        vim.bo.tabstop = 4
+        vim.bo.shiftwidth = 4
+        vim.bo.softtabstop = 4
+    end
+})

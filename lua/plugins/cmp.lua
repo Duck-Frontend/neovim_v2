@@ -7,6 +7,7 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
+  
   mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -18,17 +19,17 @@ cmp.setup({
       end
     end, { 'i', 's' }),
 
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-g>'] = cmp.mapping(function(fallback)
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.abort()  -- Закрыть меню дополнения
-        vim.defer_fn(function()
-          vim.lsp.buf.definition()  -- Перейти к определению
-        end, 50)
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
-        vim.lsp.buf.definition()  -- Обычный переход
+        fallback()
       end
-    end, { 'i', 'n' }),
+    end, { 'i', 's' }),
+
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
 
   sources = cmp.config.sources({
@@ -36,10 +37,5 @@ cmp.setup({
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'emoji' },
   }),
 })
-
-formatting = {
-    format = require('tailwindcss-colorizer-cmp').formatter
-  }

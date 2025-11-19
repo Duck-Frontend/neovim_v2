@@ -12,8 +12,8 @@ keymap.set('n', '<leader>s', ':w<CR>', { desc = 'Save file' })
 
 
 -- LiveServer для верстки
-vim.keymap.set('n', '<leader>ls', '<cmd>LiveServerStart<cr>')
-vim.keymap.set('n', '<leader>lq', '<cmd>LiveServerStop<cr>')
+-- vim.keymap.set('n', '<leader>ls', '<cmd>LiveServerStart<cr>')
+-- vim.keymap.set('n', '<leader>lq', '<cmd>LiveServerStop<cr>')
 
 
 -- Файловый менеджер

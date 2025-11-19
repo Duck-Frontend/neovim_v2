@@ -1,29 +1,59 @@
 local opt = vim.opt
 local g = vim.g
 
-
 -- Основные настройки
-opt.number = true             -- Номера строк
-opt.relativenumber = true     -- Относительные номера строк
-opt.tabstop = 4               -- 1 таб = 4 пробела
-opt.shiftwidth = 4            -- Сдвиг на 4 пробела
-opt.expandtab = true          -- Преобразование табов в пробелы
-opt.smartindent = true        -- Умные отступы
-opt.wrap = false              -- Отключить перенос строк
-opt.termguicolors = true      -- 24-битные цвета
-opt.swapfile = false          -- Не использовать swap-файлы
-opt.backup = false            -- Не создавать backup-файлы
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"  -- Каталог для undo-файлов
-opt.undofile = true           -- Сохранять историю изменений
-opt.hlsearch = false          -- Подсветка результатов поиска
-opt.incsearch = true          -- Инкрементальный поиск
-opt.ignorecase = true         -- Игнорировать регистр при поиске
-opt.smartcase = true          -- Учитывать регистр при наличии заглавных букв
-opt.scrolloff = 8             -- Минимальное число строк над/под курсором
-opt.signcolumn = "yes"        -- Всегда показывать колонку знаков
-opt.updatetime = 50           -- Частота обновления (мс)
-opt.completeopt = 'menuone,noselect'  -- Настройки автодополнения
+opt.number = true
+opt.relativenumber = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+opt.smartindent = true
+opt.wrap = false
+opt.termguicolors = true
+opt.swapfile = false
+opt.backup = false
+opt.undofile = true
+opt.hlsearch = false
+opt.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.updatetime = 50
+opt.completeopt = 'menuone,noselect'
 
+-- Python настройки
+g.python3_host_prog = vim.fn.exepath('python3')
 
--- Python-специфичные настройки
-g.python3_host_prog = vim.fn.exepath('python3')  -- Использовать Python3
+-- Django настройки
+g.django_projects = vim.fn.getcwd()
+
+-- Диагностика
+vim.diagnostic.config({
+    virtual_text = {
+        severity = vim.diagnostic.severity.ERROR
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
+
+-- Автокоманды для Python/Django
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = {'python', 'htmldjango'},
+    callback = function()
+        -- Автоформатирование при сохранении
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            buffer = 0,
+            callback = function()
+                if vim.bo.filetype == 'python' then
+                    -- Можно добавить вызов black/isort здесь
+                    vim.lsp.buf.format({ async = false })
+                else
+                    vim.lsp.buf.format({ async = false })
+                end
+            end
+        })
+    end
+})
