@@ -1,6 +1,13 @@
+-- Настройки редактора
 require('core.options')
-require('core.lazy')
+require('core.keymaps')
 
--- require('plugins.lualine')
--- require('plugins.nord')
 
+-- Менеджер плагинов
+require('config.lazy')
+
+
+-- Плагины
+require('plugins.lsp')
+require('plugins.colorscheme')
+require('plugins.neo-tree')
