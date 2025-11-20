@@ -11,7 +11,7 @@ shortcut('n', '<leader>s', ':w<cr>', {desc='Save'})
 shortcut('n', '<leader>q', ':wq<cr>', {desc='Exit with save'})
 
 -- Открытие/Закрытие файлового дерева
-shortcut('n', '<leader>e', '<cmd>Neotree toggle <cr>', {desc='Neotree toggle'})
+shortcut('n', '<leader>e', ':NvimTreeToggle<cr>', {desc='Neotree toggle'})
 
 -- Навигация между окнами
 local function setup_window_navigation()

@@ -2,7 +2,10 @@ return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
+        icons_enable = true,
         theme = 'nordic',
+        component_separators = { left = '|', right = '|'},
+        section_separators = { left = '|', right = '|'},
         sections = {
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff', 'diagnostics'},
