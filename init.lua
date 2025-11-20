@@ -1,11 +1,10 @@
 -- Настройки редактора
 require('core.options')
 require('core.keymaps')
-
+require('core.autocmd')
 
 -- LSP
 require('core.lsp')
-
 
 -- Менеджер плагинов
 require('config.lazy')

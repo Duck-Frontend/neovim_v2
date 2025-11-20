@@ -5,8 +5,8 @@ return {
         python = {
             analysis = {
                 typeCheckingMode = "off",
-                diagnosticMode = "openFilesOnly", 
-                reportMissingTypeStubs = false,        
+                diagnosticMode = "openFilesOnly",
+                reportMissingTypeStubs = false,
                 reportUnannotatedClassAttribute = false,
             }
         }

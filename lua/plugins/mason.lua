@@ -1,6 +1,6 @@
 return {
-  { 
-    "neovim/nvim-lspconfig" 
+  {
+    "neovim/nvim-lspconfig"
   },
   {
     "mason-org/mason.nvim",
