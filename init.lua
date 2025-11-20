@@ -3,6 +3,10 @@ require('core.options')
 require('core.keymaps')
 
 
+-- LSP
+require('core.lsp')
+
+
 -- Менеджер плагинов
 require('config.lazy')
 
