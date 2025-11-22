@@ -2,11 +2,15 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+local shortcut = vim.keymap.set
 
--- Локальная переменная для удобства
-local keymap = vim.keymap
+-- Быстрое сохранение файла
+shortcut('n', '<leader>s', ':w<cr>', {desc='Save'})
 
+-- Быстрое закрытие окна
+shortcut('n', '<leader>q', ':wq<cr>', {desc='Exit with save'})
 
+<<<<<<< HEAD
 -- Быстрое сохранение
 keymap.set('n', '<leader>s', ':w<CR>', { desc = 'Save file' })
 
@@ -20,6 +24,10 @@ keymap.set('n', '<leader>s', ':w<CR>', { desc = 'Save file' })
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle file tree' })
 vim.keymap.set('n', '<leader>n', ':NvimTreeFindFile<CR>', { desc = 'Reveal current file in tree' })
 
+=======
+-- Открытие/Закрытие файлового дерева
+shortcut('n', '<leader>e', ':NvimTreeToggle<cr>', {desc='Neotree toggle'})
+>>>>>>> fde4f3885e4731f1d78db4ec1c8da6ee57ccfb06
 
 -- Навигация между окнами
 local function setup_window_navigation()
@@ -27,25 +35,19 @@ local function setup_window_navigation()
 
 
   -- Основные комбинации
-  vim.keymap.set('n', '<leader>h', '<C-w>h', opts)
-  vim.keymap.set('n', '<leader>j', '<C-w>j', opts)
-  vim.keymap.set('n', '<leader>k', '<C-w>k', opts)
-  vim.keymap.set('n', '<leader>l', '<C-w>l', opts)
+  shortcut('n', '<leader>h', '<C-w>h', opts)
+  shortcut('n', '<leader>j', '<C-w>j', opts)
+  shortcut('n', '<leader>k', '<C-w>k', opts)
+  shortcut('n', '<leader>l', '<C-w>l', opts)
 
 
   -- Дополнительные удобства
-  vim.keymap.set('n', '<leader>H', '<C-w>H', opts) -- Переместить окно влево
-  vim.keymap.set('n', '<leader>J', '<C-w>J', opts) -- Переместить окно вниз
-  vim.keymap.set('n', '<leader>K', '<C-w>K', opts) -- Переместить окно вверх
-  vim.keymap.set('n', '<leader>L', '<C-w>L', opts) -- Переместить окно вправо
+  shortcut('n', '<leader>H', '<C-w>H', opts) -- Переместить окно влево
+  shortcut('n', '<leader>J', '<C-w>J', opts) -- Переместить окно вниз
+  shortcut('n', '<leader>K', '<C-w>K', opts) -- Переместить окно вверх
+  shortcut('n', '<leader>L', '<C-w>L', opts) -- Переместить окно вправо
 
-  -- Быстрое закрытие окна
-  vim.keymap.set('n', '<leader>q', '<C-w>c', opts)
 end
 
 
 setup_window_navigation()
-
-
--- Запуск Python-файла
-keymap.set('n', '<leader>rp', ':w<CR>:!python3 %<CR>', { desc = 'Run Python file' })
